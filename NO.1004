@@ -1,0 +1,33 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include<math.h>
+
+int main() {
+	int testcase;  //테스트할 횟수
+	int x1, y1, x2, y2; //출발(x1,y1), 도착(x2,y2)
+	int cx, cy, cr; //만든 행성의 x,y좌표 반지름(r)
+	int n; //행성 개수
+	int count1, count2, result;
+
+
+	scanf("%d", &testcase);
+
+	for (int i = 0; i < testcase; i++) {
+		result = 0;
+		scanf("%d %d %d %d\n", &x1, &y1, &x2, &y2);  //출발 좌표, 도착 좌표 입력하기
+		scanf("%d\n", &n);  //행성 개수 입력하기
+		for (int j = 0; j < n; j++) { 
+			count1 = 0;
+			count2 = 0;
+			scanf("%d %d %d\n", &cx, &cy, &cr); //생성할 행성의 x,y좌표와 반지름 입력하기
+			if (pow(x1 - cx, 2) + pow(y1 - cy, 2) < pow(cr, 2)) { //출발지점이 만든 행성안에 있을때
+				count1 = 1;
+			}
+			if (pow(x2 - cx, 2) + pow(y2 - cy, 2) < pow(cr, 2)) { //도착지점이 만든 행성 안에있을때
+				count2 = 1;
+			}
+			result += pow((count1 - count2), 2);
+		}
+		printf("%d\n", result);
+	}
+}
